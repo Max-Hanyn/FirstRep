@@ -3,9 +3,14 @@
 class VerifyController extends Controller
 {
 
+
+
+
+
     public function index()
     {
 
+        $this->isGuest();
         $this->view('verify');
     }
 

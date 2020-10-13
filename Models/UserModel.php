@@ -42,4 +42,13 @@ class UserModel extends ModelBase
         return $this->select()->execute();
     }
 
+    public function getUsersWith(){
+
+        $sql = ("SELECT DISTINCT users.email, users.id, users.role_id, users.verified, users.token, roles.name, users_photos.photo_name FROM `users` LEFT JOIN users_skills 
+        ON users.id = users_skills.user_id JOIN roles ON users.role_id = roles.id JOIN users_photos ON users_photos.user_id = users.id AND users_photos.is_main = '1'");
+        $query = $this->link->prepare($sql);
+        $query->execute();
+        return $query->fetchall();
+    }
+
 }

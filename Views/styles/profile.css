@@ -30,3 +30,95 @@
 .edit{
     margin-right: 10px;
 }
+
+
+body{background:url(https://bootstraptema.ru/images/bg/bg-1.png)}
+
+#main {
+    background-color: #f2f2f2;
+    padding: 20px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border-radius: 4px;
+    border-bottom: 4px solid #ddd;
+}
+#real-estates-detail #author img {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    border-radius: 100%;
+    border: 5px solid #ecf0f1;
+    margin-bottom: 10px;
+}
+#real-estates-detail .sosmed-author i.fa {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #bdc3c7;
+    color: #bdc3c7;
+    padding-top: 6px;
+    margin-top: 10px;
+}
+.panel-default .panel-heading {
+    background-color: #fff;
+}
+#real-estates-detail .slides li img {
+    height: 450px;
+}
+.input-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.input-file + label {
+    color: #fff;
+    background: #337ab7;
+    max-width: 70%;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    border: solid #2e6da4 2px;
+    border-radius: 15px;
+}
+
+.input-file:focus + label,
+
+.input-file + label:hover {
+    background-color: #2e6da4;
+}
+img {
+    width: 200px;
+    height: 200px;
+    border:1px solid #ddd;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px #aaa;
+    margin: 5% auto;
+    top: 0; left: 0; bottom: 0; right: 0;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+}
+
+.but {
+
+    margin-top: 1.8px;
+
+}
+
+#first-second-name{
+
+    font-size: 25px;
+
+}

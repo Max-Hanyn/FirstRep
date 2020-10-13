@@ -42,6 +42,7 @@ include "Views/layouts/header.php";
         </div>
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
         <a style="text-decoration: none;" href="register">Registration</a>
+        <a style="text-decoration: none;" href="/reset">Forgot Password</a>
     </form>
 </div>
 

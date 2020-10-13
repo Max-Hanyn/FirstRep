@@ -1,7 +1,9 @@
 <?php
-include  'layouts/header.php';
-
+session_start();
+include "layouts/header.php";
+include 'layouts/navigataion.php';
 ?>
+
 <body>
 
 <h1 class="text-danger">Home page</h1>

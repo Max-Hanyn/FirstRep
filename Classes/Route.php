@@ -85,11 +85,12 @@ class Route
      */
     public static function check()
     {
+
         foreach (self::$routes as $route) {
             $key = key($route);
 
-
             if (preg_match("#\A$key\z#", $_GET['url'])) {
+
 
                 if (Roles::checkRole($route[$key]['roleId']) || $_SESSION['user']['roleId'] == RolesModel::ROLE_ADMIN_ID) {
 
@@ -97,13 +98,12 @@ class Route
                     $controller = new $route[$key]['controller'];
                     $action = $route[$key]['action'];
                     $controller->$action($params[0], $params[1]);
-                } else {
-                    self::redirect('forbidden');
-
+                    return;
                 }
             }
-
         }
+        
+        self::redirect('forbidden');
     }
 
     /**
@@ -127,7 +127,7 @@ class Route
      */
     public static function redirect(string $path)
     {
-        header("Location: http://phpteam.test/$path");
+        header("Location:/$path");
         exit();
     }
 }

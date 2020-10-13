@@ -1,4 +1,7 @@
 <?php
+session_start();
+include "layouts/header.php";
+include 'layouts/navigataion.php';
 ?>
 <p>Before proceeding, please check your email for a verification link
     If you did not receive the email</p>

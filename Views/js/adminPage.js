@@ -33,27 +33,36 @@ function fillTable(data) {
         if(values.verified == '1'){
             verefied = 'verefied'
         }else {
-            verefied = '<a href="verify/'+ values.token +'"> Verify </a>'
+            verefied = '<a href="verify/'+ values.token +'" class="btn btn-primary"> Verify </a>'
         }
         $("tbody").append('<tr class="column-row">' +
             '<td>' + values.id +'</td>' +
+            '<td> <img src="'+data.path+ values.photo_name+'" alt="avatar"></td>'+
             '<td>'+ values.email +'</td>' +
             '<td>'+ verefied +'</td>' +
-            '<td>' + values.name + '<form  action="admin/changerole" method="post">' +
-            '<p><select name="role" size="3" class="select-role">' +
-            '<option disabled>Roles</option>' +
-            ''+
-            '</select></p>' +
-            '<p><input type="submit" value="Add role"></p>' +
-            ' <input type="hidden" name="userId" value="'+ values.id +'">' +
-            '</form>' +'</td>' +
-            '<td>' + '<a href="admin/edit/'+ values.id +'">Edit</a>' + '</td>' +
+            '<td id="role'+values.id+'">' + values.name + '</td>' +
+            '<td>' + '<a href="admin/edit/'+ values.id +'" class="btn btn-primary">Edit</a>' + '</td>' +
             '</tr>')
 
+        if (data.role == 1) {
+            $("#role"+values.id+"").append('<form  action="admin/changerole" method="post">' +
+                '<p><select name="role" size="3" class="select-role form-control">' +
+                '<option disabled>Roles</option>' +
+                '' +
+                '</select></p>' +
+                '<p><input type="submit" value="Add role" class="btn btn-primary"></p>' +
+                ' <input type="hidden" name="userId" value="' + values.id + '">' +
+                '</form>')
 
+        }
     })
-    $(data.roles).each(function (row,values) {
-        $('<option value="'+ values.id +'">'+ values.name +'</option>').appendTo(".select-role");
-    })
+    console.log(data.role);
+    if (data.role == 1){
+
+        $(data.roles).each(function (row,values) {
+            $('<option value="'+ values.id +'">'+ values.name +'</option>').appendTo(".select-role");
+        })
+    }
+
 }
 });

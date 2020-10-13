@@ -6,7 +6,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <?php
-            if (Roles::checkRole(RolesModel::ROLE_ADMIN_ID)){
+            if (Roles::checkRole(RolesModel::ROLE_MODERATOR_ID)){
             ?>
             <li class="nav-item active">
                 <a class="nav-link" href="/admin">Admin </a>

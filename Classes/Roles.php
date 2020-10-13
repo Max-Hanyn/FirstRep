@@ -12,7 +12,7 @@ class Roles
     {
         $roles = [
             RolesModel::ROLE_GUEST_ID => [RolesModel::ROLE_GUEST_ID],
-            RolesModel::ROLE_ADMIN_ID => [RolesModel::ROLE_ADMIN_ID, RolesModel::ROLE_USER_ID, RolesModel::ROLE_GUEST_ID],
+            RolesModel::ROLE_ADMIN_ID => [RolesModel::ROLE_ADMIN_ID, RolesModel::ROLE_USER_ID, RolesModel::ROLE_GUEST_ID,RolesModel::ROLE_MODERATOR_ID],
             RolesModel::ROLE_USER_ID => [RolesModel::ROLE_USER_ID, RolesModel::ROLE_GUEST_ID],
             RolesModel::ROLE_MODERATOR_ID => [RolesModel::ROLE_MODERATOR_ID, RolesModel::ROLE_USER_ID, RolesModel::ROLE_GUEST_ID],
         ];

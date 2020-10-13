@@ -10,12 +10,14 @@ class AdminController extends Controller
 
     public function index()
     {
+        $config = parse_ini_file("./config/photos.ini");
+        $path = $config['Path'];
         $userModel = new UserModel();
 
         $rolesModel = new RolesModel();
         $roles = $rolesModel->select()->execute();
         $users = $userModel->select('users.id,email,token,verified,name')->innerJoin('roles', 'id', 'role_id')->execute();
-        $this->view('adminPage', ['users' => [$users], 'roles' => [$roles]]);
+        $this->view('adminPage', ['users' => [$users], 'roles' => [$roles],'path' => [$path]]);
 
     }
 
@@ -35,8 +37,12 @@ class AdminController extends Controller
         }
 
 
+        $userAvatar = new UsersPhotoModel();
+        $avatar = $userAvatar->getUserAvatar($id);
         $user = $userProfileModel->getProfile($id);
-        $this->view('adminEdit', ['user' => $user, 'massage' => $massage]);
+        $photoConfig = PhotoUpload::config();
+
+        $this->view('adminEdit', ['user' => $user, 'massage' => $massage,'avatar' => $avatar,'path' => [$photoConfig['Path']]]);
     }
 
     public function changeRole()
@@ -48,23 +54,35 @@ class AdminController extends Controller
     }
 
     public function get(){
-        $userModel = new UserModel();
+        $config = parse_ini_file("./config/photos.ini");
+        $path = $config['Path'];
+        $usersModel = new UserModel();
         $rolesModel = new RolesModel();
         $roles = $rolesModel->select()->execute();
-        $users = $userModel->select('users.id,email,token,verified,name')->innerJoin('roles', 'id', 'role_id')->execute();
-        $response = ['roles' => $roles,'users' => $users];
-        echo json_encode($response);
-        return;
+        $users = $usersModel->getUsersWith();
+        $userRole = $_SESSION['user']['roleId'];
+        $response = ['roles' => $roles,'users' => $users, 'path' => $path,'role' => $userRole];
+        return print_r(json_encode($response));
     }
     public function search(){
 
+        $config = parse_ini_file("./config/photos.ini");
+        $path = $config['Path'];
         $userModel = new UserProfileModel();
         $rolesModel = new RolesModel();
         $roles = $rolesModel->select()->execute();
         $users = $userModel->search($_POST['search']);
-        $response = ['roles' => $roles,'users' => $users];
-        echo json_encode($response);
-        return;
+        $response = ['roles' => $roles,'users' => $users, 'path' => $path];
+        return print_r(json_encode($response));
+
+    }
+    public function photoChange($id){
+
+        $userPhotoModel = new UsersPhotoModel();
+        $currentUserAvatar = $userPhotoModel->getUserAvatar($id);
+        PhotoUpload::deletePhoto($currentUserAvatar[0]['photo_name']);
+        $photo = PhotoUpload::uploadPhoto();
+        $userPhotoModel->changeAvatar($photo, $id);
 
     }
 }

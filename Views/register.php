@@ -48,6 +48,7 @@ include "Views/layouts/header.php";
             <input name="password"  type="password" class="form-control" id="password">
                   </div>
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+        <a style="text-decoration: none;" href="login">Login</a>
     </form>
 </div>
 

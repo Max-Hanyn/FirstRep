@@ -15,7 +15,7 @@ class Controller
             }
         }
 
-        $pageData = $data;
+
         include "Views/$viewName.php";
     }
 
@@ -46,6 +46,16 @@ class Controller
             $id = $_SESSION['user']['id'];
             Route::redirect("profile/$id");
         }
+    }
+
+    public function isGuest(){
+
+        if (is_null($_SESSION['user']['id'])){
+
+            Route::redirect("forbidden");
+
+        }
+
     }
 
 }

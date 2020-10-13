@@ -21,7 +21,7 @@
                 <div class="card-header">
                     Profile
                     <?php
-                    if(AuthService::currentUser($id)){
+                    if(AuthService::currentUser($id) || Roles::checkRole(RolesModel::ROLE_MODERATOR_ID)){
 
                     ?>
                     <button type="button" class="add-button btn btn-primary" data-toggle="modal" data-target="#profileModal">Add new skill</button>
@@ -37,7 +37,7 @@
                             <th>Level</th>
                             <th>Language</th>
                             <?php
-                            if(AuthService::currentUser($id)){
+                            if(AuthService::currentUser($id) || Roles::checkRole(RolesModel::ROLE_MODERATOR_ID)){
 
                             ?>
                             <th>Actions</th>
@@ -55,7 +55,7 @@
                             <td><?=$skill['level']?></td>
                             <td><?=$skill['language']?></td>
                             <?php
-                            if(AuthService::currentUser($id)){
+                            if(AuthService::currentUser($id) || Roles::checkRole(RolesModel::ROLE_MODERATOR_ID)){
 
                             ?>
                             <td>

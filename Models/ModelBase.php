@@ -7,6 +7,10 @@ abstract class ModelBase
     protected $sql = '';
     protected $data = [];
 
+    private $host = 'localhost';
+    private $dbname = 'u467801509_php_team';
+    private $username = 'u467801509_MaC9HbKa12';
+    private $paswword = 'MaC9HbKa12';
     /**
      * @return string
      */
@@ -17,7 +21,7 @@ abstract class ModelBase
     }
 
     public function connection(){
-        $this->link = new PDO('mysql:host=localhost;dbname=users_info', 'root', '');
+        $this->link = new PDO("mysql:host=$this->host;dbname=$this->dbname", "$this->username", "$this->paswword");
         return $this;
     }
 
@@ -28,9 +32,12 @@ abstract class ModelBase
      */
     public function update(array $data)
     {
+
+
         $update = "";
-        foreach ($data as $colum) {
-            $update.= array_search($colum,$data)."=:". array_search($colum,$data) . ",";
+        $valuesArray = array_keys($data);
+        foreach ($valuesArray as $column) {
+            $update.= $column."=:". $column . ",";
         }
         $update = substr($update, 0, -1);
         $this->sql = "UPDATE `{$this->getTable()}` SET {$update}";
@@ -69,13 +76,14 @@ abstract class ModelBase
      */
     public function insert(array $data){
 
+        $valuesArray = array_keys($data);
         $insert = "";
         $values = '';
 
-        foreach ($data as $colum) {
+        foreach ($valuesArray as $colum) {
 
-            $values.= ':'.array_search($colum,$data) .",";
-            $insert.= array_search($colum,$data).",";
+            $values.= ':'.$colum .",";
+            $insert.= $colum.",";
 
        }
         $insert = substr($insert, 0, -1);
@@ -90,6 +98,7 @@ abstract class ModelBase
      * execute sql string
      */
     public function execute(){
+
 
         $query = $this->link->prepare($this->sql);
         $query->execute($this->data);
